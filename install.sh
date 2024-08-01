@@ -166,14 +166,14 @@ install_XrayR() {
         #handle openrc
         service XrayR stop
         rc-update delete XrayR
-        file="https://github.com/CreeperKong/XrayR-release/raw/master/XrayR"
+        file="https://github.com/XrayR-project/XrayR-release/raw/master/XrayR"
         wget -q -N --no-check-certificate -O /etc/init.d/XrayR ${file}
         chmod +x /etc/init.d/XrayR
         rc-update add XrayR
     else
         #handle systemd
         rm /etc/systemd/system/XrayR.service -f
-        file="https://github.com/CreeperKong/XrayR-release/raw/master/XrayR.service"
+        file="https://github.com/XrayR-project/XrayR-release/raw/master/XrayR.service"
         wget -q -N --no-check-certificate -O /etc/systemd/system/XrayR.service ${file}
         systemctl daemon-reload
         systemctl stop XrayR
@@ -198,7 +198,7 @@ install_XrayR() {
         if [[ $? == 0 ]]; then
             echo -e "${green}XrayR 重启成功${plain}"
         else
-            echo -e "${red}XrayR 可能启动失败，请稍后使用 XrayR log 查看日志信息，若无法启动，则可能更改了配置格式，请前往 wiki 查看：https://github.com/CreeperKong/XrayR/wiki${plain}"
+            echo -e "${red}XrayR 可能启动失败，请稍后使用 XrayR log 查看日志信息，若无法启动，则可能更改了配置格式，请前往 wiki 查看：https://github.com/XrayR-project/XrayR/wiki${plain}"
         fi
     fi
 
@@ -217,7 +217,7 @@ install_XrayR() {
     if [[ ! -f /etc/XrayR/rulelist ]]; then
         cp rulelist /etc/XrayR/
     fi
-    curl -o /usr/bin/XrayR -Ls https://raw.githubusercontent.com/CreeperKong/XrayR-release/master/XrayR.sh
+    curl -o /usr/bin/XrayR -Ls https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/XrayR.sh
     chmod +x /usr/bin/XrayR
     ln -s /usr/bin/XrayR /usr/bin/xrayr # 小写兼容
     chmod +x /usr/bin/xrayr
