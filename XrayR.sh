@@ -158,11 +158,18 @@ uninstall() {
         fi
         return 0
     fi
-    systemctl stop XrayR
-    systemctl disable XrayR
-    rm /etc/systemd/system/XrayR.service -f
-    systemctl daemon-reload
-    systemctl reset-failed
+    if [[ x"${release}" == x"alpine" ]]; then
+        service XrayR stop
+        rc-update delete XrayR
+        rm /etc/init.d/XrayR -f
+    else
+        systemctl stop XrayR
+        systemctl disable XrayR
+        rm /etc/systemd/system/XrayR.service -f
+        systemctl daemon-reload
+        systemctl reset-failed
+    fi
+    
     rm /etc/XrayR/ -rf
     rm /usr/local/XrayR/ -rf
 
@@ -297,7 +304,7 @@ show_log() {
 install_bbr() {
     if [[ x"${release}" == x"alpine" ]]; then
         echo -e "${red}由于Alpine采用musl运行库，不支持使用该脚本安装bbr！${plain}\n"
-        echo -e "${yellow}请使用以下命令设置系统内置bbr${plain}\n"
+        echo -e "${yellow}请使用以下命令设置系统内置bbr${plain}"
         echo -e "${yellow}sysctl -w net.ipv4.tcp_congestion_control=bbr${plain}\n"
         exit 1
     else
