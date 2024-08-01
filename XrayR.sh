@@ -181,7 +181,11 @@ start() {
         echo ""
         echo -e "${green}XrayR已运行，无需再次启动，如需重启请选择重启${plain}"
     else
-        systemctl start XrayR
+        if [[ x"${release}" == x"alpine" ]]; then
+            service XrayR start
+        else
+            systemctl start XrayR
+        fi
         sleep 2
         check_status
         if [[ $? == 0 ]]; then
