@@ -87,7 +87,7 @@ install_base() {
         yum install wget curl unzip tar crontabs socat -y
     elif [[ x"${release}" == x"alpine" ]]; then
         apk update
-        adk add wget curl unzip tar socat
+        apk add wget curl unzip tar socat
     else
         apt update -y
         apt install wget curl unzip tar cron socat -y
