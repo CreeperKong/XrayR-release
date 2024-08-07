@@ -28,7 +28,7 @@ elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
 elif cat /proc/version | grep -Eqi "alpine"; then
     release="alpine"
 elif cat /etc/issue | grep -Eqi "alpine"; then
-    release="apline"
+    release="alpine"
 else
     echo -e "${red}未检测到系统版本，请联系脚本作者！${plain}\n" && exit 1
 fi
