@@ -166,7 +166,7 @@ install_XrayR() {
         #handle openrc
         service XrayR stop
         rc-update delete XrayR
-        file="https://github.com/XrayR-project/XrayR-release/raw/master/XrayR"
+        file="https://raw.githubusercontent.com/CreeperKong/XrayR-release/OpenRC-support/XrayR"
         wget -q -N --no-check-certificate -O /etc/init.d/XrayR ${file}
         chmod +x /etc/init.d/XrayR
         rc-update add XrayR
